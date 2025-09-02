@@ -1,0 +1,250 @@
+/* Importação de fonte */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* Estilos para o canvas de fundo */
+#particles-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: #0d0d0d;
+}
+
+/* Estilos globais */
+body {
+    background-color: transparent;
+    color: #e0e0e0;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+/* Estilos do cabeçalho */
+header {
+    background-color: rgba(13, 13, 13, 0.8);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #333;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Contêiner das logos */
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-container img {
+    height: 55px; /* Aumentado de 40px para 55px */
+    filter: none; /* Efeito de brilho removido */
+}
+
+nav h1 {
+    color: #00ff00;
+    font-size: 1.5rem;
+    flex-grow: 1;
+    text-align: center;
+    margin: 0;
+}
+
+/* Seção principal (hero) */
+#hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+#hero h2 {
+    font-size: 3rem;
+    color: #00ff00;
+    margin-top: -10rem;
+    margin-bottom: 1rem;
+}
+
+#hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+}
+
+#hero button {
+    background-color: #00ff00;
+    color: #0d0d0d;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: background-color 0.3s;
+    margin-top: 2rem;
+}
+
+#hero button:hover {
+    background-color: #00cc00;
+}
+
+/* Estilos para a seção de relatórios */
+#relatorios {
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+#relatorios h2 {
+    font-size: 2.5rem;
+    color: #00ff00;
+    margin-bottom: 3rem;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+}
+
+.report-card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    text-decoration: none;
+    color: #e0e0e0;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.report-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 255, 0, 0.2);
+}
+
+.report-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 255, 0, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.report-card:hover::after {
+    opacity: 1;
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    transition: transform 0.3s;
+}
+
+.report-card:hover .card-icon {
+    transform: scale(1.1);
+}
+
+.report-card h3 {
+    font-size: 1.25rem;
+    margin-top: 0;
+    color: #00ff00;
+}
+
+.report-card p {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+}
+
+.report-card span {
+    display: block;
+    margin-top: 1.5rem;
+    font-weight: bold;
+    color: #00ff00;
+    border: 1px solid #00ff00;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.report-card:hover span {
+    background-color: #00ff00;
+    color: #1a1a1a;
+}
+
+/* Estilos para o rodapé */
+footer {
+    position: relative;
+    padding-top: 2rem;
+    text-align: center;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.data-status {
+    color: #e0e0e0;
+    font-size: 0.8rem;
+    position: relative;
+    z-index: 10;
+    padding: 1rem;
+}
+
+.status-icon {
+    font-size: 1.2rem;
+    color: #00ff00;
+    margin-right: 5px;
+    animation: blink-glow 2s infinite ease-in-out;
+}
+
+@keyframes blink-glow {
+    0%, 100% { opacity: 1; text-shadow: 0 0 5px #00ff00; }
+    50% { opacity: 0.5; text-shadow: none; }
+}
+
+/* Estilos para o efeito de digitação */
+.developer-text {
+    color: #00ff00;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid transparent;
+    animation: type 4s steps(26) forwards, blink-cursor 0.5s step-end infinite;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+.cursor {
+    animation: blink-cursor 0.5s step-end infinite;
+    font-weight: bold;
+    color: #00ff00;
+}
+
+@keyframes type {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-cursor {
+    from, to { border-color: transparent; }
+    50% { border-color: #00ff00; }
+}
+

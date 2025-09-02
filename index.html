@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatórios BI - Logística</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <canvas id="particles-background"></canvas>
+
+    <header>
+        <nav>
+            <div class="logo-container left-logo">
+                <img src="logo-planeta-natural.png" alt="Logo Planeta Natural">
+            </div>
+            <h1>Painel de Relatórios</h1>
+            <div class="logo-container right-logo">
+                <img src="logo-planese.png" alt="Logo Empresa Logística">
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h2>Gestão Logística - BI</h2>
+            <p>Acompanhamento dos relatórios de desempenho e eficiência logística (BA/SE)</p>
+            <button onclick="window.location.href = '#relatorios'">Relatórios</button>
+        </section>
+
+        <section id="relatorios">
+            <h2>Principais Relatórios</h2>
+            <div class="card-container">
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiYWM2MDA5N2QtMzhkMS00ODNlLWI0NzktNzE4YzE5OTVjMmUwIiwidCI6IjU3NDYxM2UxLWZhYzEtNDhiMC05MjJmLWQyNzJiNDBiYzhkZCJ9" target="_blank" class="report-card">
+                    <div class="card-icon">📊</div>
+                    <h3>Controle Diário de Pedidos</h3>
+                    <p>Acompanhamento e gestão de todos os pedidos realizados, desde a emissão até a entrega.</p>
+                    <span>Acessar Relatório</span>
+                </a>
+
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiYWQ3Mjg3OTUtYmExOS00NWI0LThhYjMtNDE1N2IwYzkwZTRhIiwidCI6IjU3NDYxM2UxLWZhYzEtNDhiMC05MjJmLWQyNzJiNDBiYzhkZCJ9" target="_blank" class="report-card">
+                    <div class="card-icon">🗓️</div>
+                    <h3>Gestão de Validade</h3>
+                    <p>Monitoramento e controle de produtos com prazo de validade próximo ao vencimento.</p>
+                    <span>Acessar Relatório</span>
+                </a>
+
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiNzE4MzI2ZTMtOGZkZi00YmU4LTgwMzQtZjNiNTQ3MzE1MGQ0IiwidCI6IjU3NDYxM2UxLWZhYzEtNDhiMC05MjJmLWQyNzJiNDBiYzhkZCJ9" target="_blank" class="report-card">
+                    <div class="card-icon">📈</div>
+                    <h3>Produtividade - BA</h3>
+                    <p>Análise de desempenho da equipe e processos operacionais na unidade da Bahia.</p>
+                    <span>Acessar Relatório</span>
+                </a>
+
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiZDYzZmFkZGMtNmUyOC00M2QwLTk1YTgtZTE5YmFiNzFhM2UwIiwidCI6IjU3NDYxM2UxLWZhYzEtNDhiYy05MjJmLWQyNzJiNDBiYzhkZCJ9" target="_blank" class="report-card">
+                    <div class="card-icon">📈</div>
+                    <h3>Produtividade - SE</h3>
+                    <p>Análise de desempenho da equipe e processos operacionais na unidade de Sergipe.</p>
+                    <span>Acessar Relatório</span>
+                </a>
+                
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiNWIxYWM3ZjktNDg1My00M2RkLThlM2ItNTYxYjAzNjU4M2Q4IiwidCI6IjU3NDYxM2UxLWZhYzEtNDhiMC05MjJmLWQyNzJiNDBiYzhkZCJ9" target="_blank" class="report-card">
+                    <div class="card-icon">🎯</div>
+                    <h3>OTIF - BA</h3>
+                    <p>On Time In Full. Monitoramento de entregas dentro do prazo e completas na Bahia.</p>
+                    <span>Acessar Relatório</span>
+                </a>
+                
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiNzU1ZmU5YWEtZGI5My00MWExLTg3MzUtMDY0ZmUyMDg5ZTRjIiwidCI6IjU3NDYxM2UxLWZhYzEtNDhiMC05MjJmLWQyNzJiNDBiYzhkZCJ9" target="_blank" class="report-card">
+                    <div class="card-icon">🎯</div>
+                    <h3>OTIF - SE</h3>
+                    <p>On Time In Full. Monitoramento de entregas dentro do prazo e completas em Sergipe.</p>
+                    <span>Acessar Relatório</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+    
+    <footer>
+        <div class="data-status">
+            <span class="status-icon">●</span> Dados atualizados diariamente às 08:00h, 13:00h e 18:00h.
+        </div>
+        <p>
+            <span class="developer-text"></span>
+            <span class="cursor">|</span>
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
