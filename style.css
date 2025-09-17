@@ -1,17 +1,36 @@
 /* Importação de fonte */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* Variáveis CSS para consistência */
+/* Variáveis CSS para modo dark (padrão) */
 :root {
     --primary: #00ff00;
     --primary-dark: #00cc00;
     --primary-light: #99ff99;
-    --dark-bg: #0d0d0d;
-    --dark-card: #1a1a1a;
-    --dark-border: #333;
+    --bg-color: #0d0d0d;
+    --card-bg: #1a1a1a;
+    --border-color: #333;
     --text-primary: #e0e0e0;
     --text-secondary: #a0a0a0;
     --gradient: linear-gradient(135deg, var(--primary), #00ccaa);
+    --header-bg: rgba(13, 13, 13, 0.95);
+    --footer-border: rgba(51, 51, 51, 0.3);
+    --shadow-color: rgba(0, 255, 0, 0.3);
+}
+
+/* Variáveis para modo light */
+[data-theme="light"] {
+    --primary: #007bff;
+    --primary-dark: #0056b3;
+    --primary-light: #b3d9ff;
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --border-color: #dee2e6;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --gradient: linear-gradient(135deg, var(--primary), #0099cc);
+    --header-bg: rgba(255, 255, 255, 0.95);
+    --footer-border: rgba(222, 226, 230, 0.5);
+    --shadow-color: rgba(0, 123, 255, 0.3);
 }
 
 /* Estilos para o canvas de fundo */
@@ -23,6 +42,11 @@
     height: 100%;
     z-index: -1;
     background: linear-gradient(135deg, #0a0a0a 0%, #151515 100%);
+    transition: background 0.5s ease;
+}
+
+[data-theme="light"] #particles-background {
+    background: linear-gradient(135deg, #e3f2fd 0%, #f3f4f6 100%);
 }
 
 /* Estilos globais */
@@ -30,6 +54,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 body {
@@ -47,12 +72,36 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
 }
 
+/* Botão de alternância de tema */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--gradient);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px var(--shadow-color);
+}
+
+.theme-toggle svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
 /* Estilos do cabeçalho reformulado */
 header {
-    background-color: rgba(13, 13, 13, 0.95);
+    background-color: var(--header-bg);
     backdrop-filter: blur(10px);
     padding: 1.5rem 2rem;
-    border-bottom: 1px solid var(--dark-border);
+    border-bottom: 1px solid var(--border-color);
     text-align: center;
 }
 
@@ -88,7 +137,7 @@ header {
     color: var(--primary);
     font-size: 2rem;
     margin-bottom: 0.5rem;
-    text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    text-shadow: 0 0 10px var(--shadow-color);
 }
 
 .header-title p {
@@ -135,7 +184,7 @@ header {
 
 #hero button {
     background: var(--gradient);
-    color: #0d0d0d;
+    color: var(--bg-color);
     border: none;
     padding: 1rem 2.5rem;
     border-radius: 50px;
@@ -144,12 +193,12 @@ header {
     font-weight: 700;
     transition: transform 0.3s, box-shadow 0.3s;
     animation: fadeUp 1.4s ease-out;
-    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.3);
+    box-shadow: 0 5px 15px var(--shadow-color);
 }
 
 #hero button:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 255, 0, 0.4);
+    box-shadow: 0 10px 25px var(--shadow-color);
 }
 
 /* Estilos para a seção de relatórios */
@@ -194,7 +243,7 @@ header {
 .report-card {
     background: rgba(26, 26, 26, 0.7);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(51, 51, 51, 0.5);
+    border: 1px solid var(--border-color);
     border-radius: 15px;
     padding: 2.5rem 2rem;
     text-align: center;
@@ -203,6 +252,10 @@ header {
     transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
+}
+
+[data-theme="light"] .report-card {
+    background: rgba(255, 255, 255, 0.9);
 }
 
 /* Efeito de borda gradiente no hover (mais sutil) */
@@ -222,8 +275,12 @@ header {
 
 .report-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 25px rgba(0, 255, 0, 0.2);
+    box-shadow: 0 12px 25px var(--shadow-color);
     background: rgba(35, 35, 35, 0.9);
+}
+
+[data-theme="light"] .report-card:hover {
+    background: rgba(255, 255, 255, 1);
 }
 
 .report-card:hover::after {
@@ -251,7 +308,7 @@ header {
 }
 
 .report-card:hover .card-icon svg {
-    fill: #99ff99;
+    fill: var(--primary-light);
 }
 
 .report-card h3 {
@@ -263,7 +320,7 @@ header {
 }
 
 .report-card:hover h3 {
-    color: #99ff99;
+    color: var(--primary-light);
 }
 
 .report-card p {
@@ -274,7 +331,7 @@ header {
 }
 
 .report-card:hover p {
-    color: #d0d0d0;
+    color: var(--text-primary);
 }
 
 .report-card span {
@@ -290,9 +347,9 @@ header {
 
 .report-card:hover span {
     background: var(--primary);
-    color: #1a1a1a;
+    color: var(--card-bg);
     border-color: transparent;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+    box-shadow: 0 0 15px var(--shadow-color);
 }
 
 /* Estilos para o rodapé */
@@ -302,7 +359,7 @@ footer {
     text-align: center;
     overflow: hidden;
     z-index: 1;
-    border-top: 1px solid rgba(51, 51, 51, 0.3);
+    border-top: 1px solid var(--footer-border);
     margin-top: 4rem;
 }
 
@@ -343,7 +400,7 @@ footer {
     white-space: nowrap;
     overflow: hidden;
     display: inline-block;
-    text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+    text-shadow: 0 0 5px var(--shadow-color);
 }
 
 .cursor {
@@ -407,5 +464,12 @@ footer {
     
     #relatorios h2 {
         font-size: 2rem;
+    }
+
+    .theme-toggle {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
     }
 }
