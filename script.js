@@ -1,100 +1,210 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const developerTextElement = document.querySelector('.developer-text');
-    const textToType = "Desenvolvido por G. Hebreus";
-    let i = 0;
-    const typingSpeed = 70; // velocidade da digitação em milissegundos
+// Efeito de digitação
+document.addEventListener("DOMContentLoaded", function () {
+  const developerTextElement = document.querySelector(".developer-text");
+  const textToType = "Desenvolvido por G. Hebreus";
+  let i = 0;
+  const typingSpeed = 70;
+  let isDeleting = false;
+  let typeTimeout;
 
-    function typeWriter() {
-        if (i < textToType.length) {
-            developerTextElement.textContent += textToType.charAt(i);
-            i++;
-            setTimeout(typeWriter, typingSpeed);
-        }
+  function typeWriter() {
+    const currentText = textToType.substring(0, i);
+    developerTextElement.textContent = currentText;
+
+    if (!isDeleting && i < textToType.length) {
+      // Modo de digitação
+      i++;
+      typeTimeout = setTimeout(typeWriter, typingSpeed);
+    } else if (isDeleting && i > 0) {
+      // Modo de exclusão
+      i--;
+      typeTimeout = setTimeout(typeWriter, typingSpeed / 2);
+    } else {
+      // Alternar entre digitação e exclusão
+      isDeleting = !isDeleting;
+      typeTimeout = setTimeout(typeWriter, isDeleting ? 1000 : typingSpeed);
     }
-    
-    typeWriter();
+  }
+
+  typeWriter();
+
+  // Limpar timeout quando a página for fechada
+  window.addEventListener("beforeunload", () => {
+    clearTimeout(typeTimeout);
+  });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('particles-background');
-    const ctx = canvas.getContext('2d');
-    let W, H;
-    const particles = [];
-    const maxParticles = 100;
-    
-    // Define o tamanho do canvas para cobrir a janela
-    function resizeCanvas() {
-        W = canvas.width = window.innerWidth;
-        H = canvas.height = document.body.scrollHeight; // Altura total da página
+// Função para rolar suavemente até a seção de relatórios
+function scrollToReports() {
+  const relatoriosSection = document.getElementById("relatorios");
+  if (relatoriosSection) {
+    relatoriosSection.scrollIntoView({ behavior: "smooth" });
+  }
+}
+
+// Sistema de partículas melhorado
+document.addEventListener("DOMContentLoaded", () => {
+  const canvas = document.getElementById("particles-background");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+  let W, H;
+  const particles = [];
+  const maxParticles = 80;
+  const colors = ["#00ff00", "#00cc00", "#99ff99", "#00ccaa"];
+  let animationId;
+
+  const mouse = {
+    x: undefined,
+    y: undefined,
+    radius: 100,
+  };
+
+  window.addEventListener("mousemove", (e) => {
+    mouse.x = e.x;
+    mouse.y = e.y;
+  });
+
+  function resizeCanvas() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = document.body.scrollHeight;
+  }
+
+  class Particle {
+    constructor() {
+      this.x = Math.random() * W;
+      this.y = Math.random() * H;
+      this.speedX = Math.random() * 1 - 0.5;
+      this.speedY = Math.random() * 1 - 0.5;
+      this.size = Math.random() * 2 + 1;
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+      this.alpha = Math.random() * 0.3 + 0.1;
+      this.baseX = this.x;
+      this.baseY = this.y;
+      this.density = Math.random() * 30 + 1;
     }
 
-    class Particle {
-        constructor() {
-            this.x = Math.random() * W;
-            this.y = Math.random() * H;
-            this.speedX = Math.random() * 0.5 - 0.25;
-            this.speedY = Math.random() * 0.5 - 0.25;
-            this.size = Math.random() * 2 + 1;
-            this.color = 'rgba(0, 255, 0, 0.8)';
-        }
+    update() {
+      // Verificar colisão com mouse
+      let dx = mouse.x - this.x;
+      let dy = mouse.y - this.y;
+      let distance = Math.sqrt(dx * dx + dy * dy);
+      let forceDirectionX = dx / distance;
+      let forceDirectionY = dy / distance;
 
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
+      // Força de repulsão máxima
+      const maxDistance = mouse.radius;
+      let force = (maxDistance - distance) / maxDistance;
 
-            if (this.x > W || this.x < 0) this.speedX *= -1;
-            if (this.y > H || this.y < 0) this.speedY *= -1;
-        }
+      // Se a força for negativa (muito longe), definir como 0
+      if (force < 0) force = 0;
 
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fillStyle = this.color;
-            ctx.fill();
-        }
+      let directionX = forceDirectionX * force * this.density;
+      let directionY = forceDirectionY * force * this.density;
+
+      if (distance < mouse.radius) {
+        // Repelir partícula do mouse
+        this.x -= directionX;
+        this.y -= directionY;
+      } else {
+        // Movimento normal com bounce nas bordas
+        if (this.x > W || this.x < 0) this.speedX *= -1;
+        if (this.y > H || this.y < 0) this.speedY *= -1;
+
+        this.x += this.speedX;
+        this.y += this.speedY;
+      }
     }
 
-    function connectParticles() {
-        for (let a = 0; a < particles.length; a++) {
-            for (let b = a; b < particles.length; b++) {
-                let distance = ((particles[a].x - particles[b].x) ** 2 + (particles[a].y - particles[b].y) ** 2) ** 0.5;
-                if (distance < 120) {
-                    let opacity = 1 - (distance / 120);
-                    ctx.strokeStyle = `rgba(0, 255, 0, ${opacity})`;
-                    ctx.lineWidth = 0.5;
-                    ctx.beginPath();
-                    ctx.moveTo(particles[a].x, particles[a].y);
-                    ctx.lineTo(particles[b].x, particles[b].y);
-                    ctx.stroke();
-                }
-            }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.globalAlpha = this.alpha;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+
+      // Efeito de brilho
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size * 1.5, 0, Math.PI * 2);
+      const gradient = ctx.createRadialGradient(
+        this.x,
+        this.y,
+        this.size * 0.5,
+        this.x,
+        this.y,
+        this.size * 2
+      );
+      gradient.addColorStop(0, `${this.color}20`);
+      gradient.addColorStop(1, "transparent");
+      ctx.fillStyle = gradient;
+      ctx.fill();
+    }
+  }
+
+  function connectParticles() {
+    for (let a = 0; a < particles.length; a++) {
+      for (let b = a; b < particles.length; b++) {
+        let dx = particles[a].x - particles[b].x;
+        let dy = particles[a].y - particles[b].y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < 120) {
+          let opacity = 1 - distance / 120;
+          ctx.strokeStyle = `rgba(0, 255, 0, ${opacity * 0.1})`;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.moveTo(particles[a].x, particles[a].y);
+          ctx.lineTo(particles[b].x, particles[b].y);
+          ctx.stroke();
         }
+      }
+    }
+  }
+
+  function init() {
+    resizeCanvas();
+    particles.length = 0;
+
+    for (let i = 0; i < maxParticles; i++) {
+      particles.push(new Particle());
     }
 
-    function init() {
-        resizeCanvas();
-        for (let i = 0; i < maxParticles; i++) {
-            particles.push(new Particle());
-        }
-        animate();
+    if (animationId) {
+      cancelAnimationFrame(animationId);
     }
 
-    function animate() {
-        ctx.clearRect(0, 0, W, H);
-        connectParticles();
-        particles.forEach(p => {
-            p.update();
-            p.draw();
-        });
-        requestAnimationFrame(animate);
+    animate();
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, W, H);
+
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
     }
 
-    window.addEventListener('resize', () => {
-        resizeCanvas();
-        particles.forEach(p => {
-            p.x = Math.random() * W;
-            p.y = Math.random() * H;
-        });
-    });
-    init();
+    connectParticles();
+
+    animationId = requestAnimationFrame(animate);
+  }
+
+  let resizeTimeout;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      resizeCanvas();
+      particles.forEach((p) => {
+        p.x = Math.random() * W;
+        p.y = Math.random() * H;
+      });
+    }, 250);
+  });
+
+  init();
+
+  window.addEventListener("beforeunload", () => {
+    cancelAnimationFrame(animationId);
+  });
 });

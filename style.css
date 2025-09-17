@@ -1,5 +1,18 @@
 /* Importação de fonte */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Variáveis CSS para consistência */
+:root {
+    --primary: #00ff00;
+    --primary-dark: #00cc00;
+    --primary-light: #99ff99;
+    --dark-bg: #0d0d0d;
+    --dark-card: #1a1a1a;
+    --dark-border: #333;
+    --text-primary: #e0e0e0;
+    --text-secondary: #a0a0a0;
+    --gradient: linear-gradient(135deg, var(--primary), #00ccaa);
+}
 
 /* Estilos para o canvas de fundo */
 #particles-background {
@@ -9,52 +22,78 @@
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-color: #0d0d0d;
+    background: linear-gradient(135deg, #0a0a0a 0%, #151515 100%);
 }
 
 /* Estilos globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-color: transparent;
-    color: #e0e0e0;
-    font-family: 'Montserrat', sans-serif;
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    line-height: 1.6;
 }
 
-/* Estilos do cabeçalho */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+/* Estilos do cabeçalho reformulado */
 header {
-    background-color: rgba(13, 13, 13, 0.8);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    padding: 1rem 2rem;
-    border-bottom: 1px solid #333;
+    background-color: rgba(13, 13, 13, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--dark-border);
+    text-align: center;
 }
 
-nav {
+.header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-/* Contêiner das logos */
 .logo-container {
+    flex: 1;
     display: flex;
-    align-items: center;
-    gap: 10px;
+    justify-content: center;
 }
 
-.logo-container img {
-    height: 55px; /* Aumentado de 40px para 55px */
-    filter: none; /* Efeito de brilho removido */
+.logo {
+    height: 50px;
+    transition: transform 0.3s ease;
 }
 
-nav h1 {
-    color: #00ff00;
-    font-size: 1.5rem;
-    flex-grow: 1;
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.header-title {
+    flex: 2;
     text-align: center;
+}
+
+.header-title h1 {
+    color: var(--primary);
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.header-title p {
+    color: var(--text-secondary);
+    font-size: 1rem;
     margin: 0;
 }
 
@@ -69,182 +108,304 @@ nav h1 {
     padding: 2rem;
     position: relative;
     z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-content {
+    max-width: 800px;
 }
 
 #hero h2 {
-    font-size: 3rem;
-    color: #00ff00;
-    margin-top: -10rem;
-    margin-bottom: 1rem;
+    font-size: 3.2rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 1s ease-out;
 }
 
 #hero p {
-    font-size: 1.2rem;
-    max-width: 600px;
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    color: var(--text-secondary);
+    animation: fadeUp 1.2s ease-out;
 }
 
 #hero button {
-    background-color: #00ff00;
+    background: var(--gradient);
     color: #0d0d0d;
     border: none;
-    padding: 1rem 2rem;
-    border-radius: 5px;
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    transition: background-color 0.3s;
-    margin-top: 2rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: fadeUp 1.4s ease-out;
+    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.3);
 }
 
 #hero button:hover {
-    background-color: #00cc00;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 255, 0, 0.4);
 }
 
 /* Estilos para a seção de relatórios */
 #relatorios {
-    padding: 4rem 2rem;
+    padding: 5rem 2rem;
     text-align: center;
     position: relative;
     z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 #relatorios h2 {
     font-size: 2.5rem;
-    color: #00ff00;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
     margin-bottom: 3rem;
+    position: relative;
+    display: inline-block;
+}
+
+#relatorios h2:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--gradient);
 }
 
 .card-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 2.5rem;
     justify-content: center;
 }
 
 .report-card {
-    background: #1a1a1a;
-    border: 1px solid #333;
-    border-radius: 10px;
-    padding: 2rem;
+    background: rgba(26, 26, 26, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(51, 51, 51, 0.5);
+    border-radius: 15px;
+    padding: 2.5rem 2rem;
     text-align: center;
     text-decoration: none;
-    color: #e0e0e0;
-    transition: transform 0.3s, box-shadow 0.3s;
+    color: var(--text-primary);
+    transition: all 0.4s ease;
     position: relative;
     overflow: hidden;
 }
 
-.report-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 255, 0, 0.2);
-}
-
+/* Efeito de borda gradiente no hover (mais sutil) */
 .report-card::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, rgba(0, 255, 0, 0.1) 0%, transparent 70%);
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+    background: var(--gradient);
+    border-radius: 16px;
     opacity: 0;
-    transition: opacity 0.5s;
+    transition: opacity 0.4s;
+}
+
+.report-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 255, 0, 0.2);
+    background: rgba(35, 35, 35, 0.9);
 }
 
 .report-card:hover::after {
-    opacity: 1;
+    opacity: 0.3;
 }
 
 .card-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
     transition: transform 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-icon svg {
+    width: 60px;
+    height: 60px;
+    fill: var(--primary);
+    transition: fill 0.3s;
 }
 
 .report-card:hover .card-icon {
-    transform: scale(1.1);
+    transform: scale(1.15);
+}
+
+.report-card:hover .card-icon svg {
+    fill: #99ff99;
 }
 
 .report-card h3 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     margin-top: 0;
-    color: #00ff00;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    transition: color 0.3s;
+}
+
+.report-card:hover h3 {
+    color: #99ff99;
 }
 
 .report-card p {
-    font-size: 0.9rem;
-    color: #a0a0a0;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    transition: color 0.3s;
+}
+
+.report-card:hover p {
+    color: #d0d0d0;
 }
 
 .report-card span {
-    display: block;
+    display: inline-block;
     margin-top: 1.5rem;
     font-weight: bold;
-    color: #00ff00;
-    border: 1px solid #00ff00;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 0.7rem 1.5rem;
+    border-radius: 30px;
+    transition: all 0.3s;
 }
 
 .report-card:hover span {
-    background-color: #00ff00;
+    background: var(--primary);
     color: #1a1a1a;
+    border-color: transparent;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
 }
 
 /* Estilos para o rodapé */
 footer {
     position: relative;
-    padding-top: 2rem;
+    padding: 3rem 2rem 2rem;
     text-align: center;
     overflow: hidden;
     z-index: 1;
+    border-top: 1px solid rgba(51, 51, 51, 0.3);
+    margin-top: 4rem;
 }
 
 .data-status {
-    color: #e0e0e0;
-    font-size: 0.8rem;
+    color: var(--text-primary);
+    font-size: 1rem;
     position: relative;
     z-index: 10;
     padding: 1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 .status-icon {
     font-size: 1.2rem;
-    color: #00ff00;
-    margin-right: 5px;
+    color: var(--primary);
     animation: blink-glow 2s infinite ease-in-out;
 }
 
 @keyframes blink-glow {
-    0%, 100% { opacity: 1; text-shadow: 0 0 5px #00ff00; }
-    50% { opacity: 0.5; text-shadow: none; }
+    0%, 100% { 
+        opacity: 1; 
+        text-shadow: 0 0 5px var(--primary), 0 0 10px var(--primary);
+    }
+    50% { 
+        opacity: 0.7; 
+        text-shadow: none;
+    }
 }
 
 /* Estilos para o efeito de digitação */
 .developer-text {
-    color: #00ff00;
-    font-size: 0.9rem;
+    color: var(--primary);
+    font-size: 1.1rem;
     white-space: nowrap;
     overflow: hidden;
-    border-right: 2px solid transparent;
-    animation: type 4s steps(26) forwards, blink-cursor 0.5s step-end infinite;
-    text-shadow: 0 0 5px #00ff00;
+    display: inline-block;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
 }
 
 .cursor {
-    animation: blink-cursor 0.5s step-end infinite;
+    animation: blink-cursor 0.7s step-end infinite;
     font-weight: bold;
-    color: #00ff00;
-}
-
-@keyframes type {
-    from { width: 0; }
-    to { width: 100%; }
+    color: var(--primary);
 }
 
 @keyframes blink-cursor {
-    from, to { border-color: transparent; }
-    50% { border-color: #00ff00; }
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
 }
 
+/* Animações */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    header {
+        padding: 1rem;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .header-title h1 {
+        font-size: 1.5rem;
+    }
+    
+    .header-title p {
+        font-size: 0.9rem;
+    }
+    
+    #hero h2 {
+        font-size: 2.2rem;
+    }
+    
+    #hero p {
+        font-size: 1.1rem;
+    }
+    
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .card-icon svg {
+        width: 50px;
+        height: 50px;
+    }
+    
+    #relatorios h2 {
+        font-size: 2rem;
+    }
+}
