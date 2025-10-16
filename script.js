@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
 // Efeito de digitação
 document.addEventListener("DOMContentLoaded", function () {
     const developerTextElement = document.querySelector(".developer-text");
-    const textToType = "Desenvolvido por G. Hebreus";
+    const textToType = "Desenvolvido Por G. Hebreus";
     let i = 0;
     const typingSpeed = 70;
     let isDeleting = false;
