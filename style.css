@@ -555,3 +555,13 @@ footer {
     opacity: 1;
   }
 }
+
+.observacao {
+  font-size: 0.9em;
+  color: #555; /* cinza mais claro para diferenciar */
+  background-color: #f0f8ff; /* leve fundo azul */
+  padding: 8px;
+  border-left: 4px solid #3498db; /* destaque na lateral */
+  border-radius: 4px;
+}
+
