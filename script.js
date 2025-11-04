@@ -242,3 +242,41 @@ document.addEventListener("DOMContentLoaded", () => {
         cancelAnimationFrame(animationId);
     });
 });
+
+// ===== MODAL DO IFRAME POWER BI =====
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("iframeModal");
+  const closeModal = document.querySelector(".close-modal");
+  const fullscreenBtn = document.getElementById("fullscreenBtn");
+  const iframe = document.getElementById("powerbiFrame");
+
+  // Selecionar o card específico
+  const cardTV = Array.from(document.querySelectorAll(".report-card"))
+    .find(card => card.querySelector("h3")?.textContent.includes("Produtividade - SE (TV)"));
+
+  if (cardTV) {
+    cardTV.addEventListener("click", (e) => {
+      e.preventDefault(); // Evita redirecionar para Power BI
+      modal.classList.add("active");
+    });
+  }
+
+  // Fechar modal
+  closeModal.addEventListener("click", () => {
+    modal.classList.remove("active");
+  });
+
+  // Fechar modal ao clicar fora
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) modal.classList.remove("active");
+  });
+
+  // Botão de tela cheia
+  fullscreenBtn.addEventListener("click", () => {
+    if (!document.fullscreenElement) {
+      iframe.requestFullscreen().catch(err => console.error(err));
+    } else {
+      document.exitFullscreen();
+    }
+  });
+});
