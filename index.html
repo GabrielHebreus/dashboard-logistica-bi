@@ -13,12 +13,24 @@
   <!-- Botão de alternância de tema -->
   <button class="theme-toggle" aria-label="Alternar tema" id="themeToggle">
     <svg class="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path d="M12,18c-3.3,0-6-2.7-6-6s2.7-6,6-6s6,2.7,6,6S15.3,18,12,18z" />
+      <path
+        d="M12,18c-3.3,0-6-2.7-6-6s2.7-6,6-6s6,2.7,6,6S15.3,18,12,18zM12,8c-2.2,0-4,1.8-4,4c0,2.2,1.8,4,4,4c2.2,0,4-1.8,4-4C16,9.8,14.2,8,12,8z" />
       <path d="M12,4c-0.6,0-1-0.4-1-1V1c0-0.6,0.4-1,1-1s1,0.4,1,1v2C13,3.6,12.6,4,12,4z" />
+      <path d="M12,20c-0.6,0-1-0.4-1-1v-2c0-0.6,0.4-1,1-1s1,0.4,1,1v2C13,19.6,12.6,20,12,20z" />
+      <path
+        d="M5.6,6.6c-0.3,0-0.5-0.1-0.7-0.3L3.5,4.9c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l1.4,1.4c0.4,0.4,0.4,1,0,1.4C6.1,6.5,5.9,6.6,5.6,6.6z" />
+      <path
+        d="M19.8,18.4c-0.3,0-0.5-0.1-0.7-0.3l-1.4-1.4c-0.4-0.4-0.4-1,0-1.4s1-0.4,1.4,0l1.4,1.4c0.4,0.4,0.4,1,0,1.4C20.3,18.3,20.1,18.4,19.8,18.4z" />
+      <path d="M4,13H1c-0.6,0-1-0.4-1-1s0.4-1,1-1h2c0.6,0,1,0.4,1,1S4.6,13,4,13z" />
+      <path d="M23,13h-2c-0.6,0-1-0.4-1-1s0.4-1,1-1h2c0.6,0,1,0.4,1,1S23.6,13,23,13z" />
+      <path
+        d="M5.6,19.8c-0.3,0-0.5-0.1-0.7-0.3c-0.4-0.4-0.4-1,0-1.4l1.4-1.4c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4l-1.4,1.4C6.1,19.7,5.9,19.8,5.6,19.8z" />
+      <path
+        d="M18.4,6.6c-0.3,0-0.5-0.1-0.7-0.3c-0.4-0.4-0.4-1,0-1.4l1.4-1.4c0.4-0.4,1-0.4,1.4,0s0.4,1,0,1.4l-1.4,1.4C18.9,6.5,18.7,6.6,18.4,6.6z" />
     </svg>
     <svg class="theme-icon-light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="display:none;">
       <path
-        d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69z" />
+        d="M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69zM12 18c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm0-10c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4z" />
     </svg>
   </button>
 
@@ -30,6 +42,9 @@
         <h1>Painel de Relatórios | BI Logística</h1>
         <p>Dashboard de acompanhamento operacional</p>
       </div>
+      <div class="header-actions">
+        <!-- Espaço para ações futuras -->
+      </div>
     </div>
   </header>
 
@@ -38,10 +53,13 @@
       <div class="hero-content">
         <h2>Gestão Logística | BI</h2>
         <p>
-          Monitoramento de desempenho e eficiência das operações logísticas <br>
+          Monitoramento de desempenho e eficiência das 
+          operações logísticas <br>
           (Bahia e Sergipe)
         </p>
-        <button onclick="scrollToReports()">Explorar Relatórios</button>
+        <button onclick="scrollToReports()">
+          Explorar Relatórios
+        </button>
       </div>
     </section>
 
@@ -50,11 +68,16 @@
       <div class="card-container">
         <a href="https://app.powerbi.com/view?r=eyJrIjoiOTUzM2I2YjItMWNjMS00MDYxLWIxOWUtYTMwMzhkYjQwZDUxIiwidCI6IjU3NDYxM2UxLWZhYzEtNDhiMC05MjJmLWQyNzJiNDBiYzhkZCJ9"
           target="_blank" class="report-card">
+          <!-- INDICADOR ONLINE -->
           <div class="status-indicator"></div>
           <div class="status-text">Online</div>
+
           <div class="card-icon">📊</div>
           <h3>Controle Diário de Pedidos</h3>
-          <p>Acompanhamento e gestão de todos os pedidos realizados.</p>
+          <p>
+            Acompanhamento e gestão de todos os pedidos realizados, desde a
+            emissão até a entrega.
+          </p>
           <span>Acessar Relatório</span>
         </a>
 
@@ -62,26 +85,86 @@
           target="_blank" class="report-card">
           <div class="card-icon">🗓️</div>
           <h3>Gestão de Validade</h3>
-          <p>Monitoramento de produtos próximos ao vencimento.</p>
+          <p>
+            Monitoramento e controle de produtos com prazo de validade próximo
+            ao vencimento.
+          </p>
           <span>Acessar Relatório</span>
         </a>
 
         <a href="https://app.powerbi.com/view?r=eyJrIjoiNDBjYjNhNTktODdjNS00YmEwLTkxZTAtYTdjYzljZjE5MmM5IiwidCI6IjU3NDYxM2UxLWZhYzEtNDhiMC05MjJmLWQyNzJiNDBiYzhkZCJ9"
           target="_blank" class="report-card">
+          <!-- INDICADOR ONLINE -->
           <div class="status-indicator"></div>
           <div class="status-text">Online</div>
+
           <div class="card-icon">📈</div>
           <h3>Produtividade - BA</h3>
-          <p>Desempenho da equipe e processos operacionais na Bahia.</p>
+          <p>
+            Análise de desempenho da equipe e processos operacionais na
+            unidade da Bahia.
+          </p>
           <span>Acessar Relatório</span>
         </a>
 
-        <a href="#" class="report-card">
+        <a href="https://app.powerbi.com/view?r=eyJrIjoiZGIwY2YxYjctOTcwZi00YzkzLTg4ZmEtNzFlOTQ2ZjY5YzUzIiwidCI6IjU3NDYxM2UxLWZhYzEtNDhiMC05MjJmLWQyNzJiNDBiYzhkZCJ9"
+          target="_blank" class="report-card">
+          <!-- INDICADOR ONLINE -->
+          <div class="status-indicator"></div>
+          <div class="status-text">Online</div>
+
+          <div class="card-icon">📈</div>
+          <h3>Produtividade - SE</h3>
+          <p>
+            Análise de desempenho da equipe e processos operacionais na
+            unidade de Sergipe.
+          </p>
+          <span>Acessar Relatório</span>
+        </a>
+
+        <a href="https://app.powerbi.com/view?r=eyJrIjoiNWIxYWM5ZjktNDg1My00M2RkLThlM2ItNTYxYjAzNjU4M2Q4IiwidCI6IjU3NDYxM2UxLWZhYzEtNDhiMC05MjJmLWQyNzJiNDBiYzhkZCJ9"
+          target="_blank" class="report-card">
+          <div class="card-icon">🎯</div>
+          <h3>OTIF - BA</h3>
+          <p>
+            On Time In Full. Monitoramento de entregas dentro do prazo e
+            completas na Bahia.
+          </p>
+          <span>Acessar Relatório</span>
+        </a>
+
+        <a href="https://app.powerbi.com/view?r=eyJrIjoiNzU1ZmU5YWEtZGI5My00MWExLTg3MzUtMDY0ZmUyMDg5ZTRjIiwidCI6IjU3NDYxM2UxLWZhYzEtNDhiMC05MjJmLWQyNzJiNDBiYzhkZCJ9"
+          target="_blank" class="report-card">
+          <div class="card-icon">🎯</div>
+          <h3>OTIF - SE</h3>
+          <p>
+            On Time In Full. Monitoramento de entregas dentro do prazo e
+            completas em Sergipe.
+          </p>
+          <span>Acessar Relatório</span>
+        </a>
+        
+        <!-- NOVO CARD ADICIONADO - CORRIGIDO -->
+        <a href="https://app.powerbi.com/view?r=eyJrIjoiZjkyYTFlMGEtZDg3MC00MzU1LTgyMjAtMGM5ZTlhODM2NGNkIiwidCI6IjU3NDYxM2UxLWZhYzEtNDhiMC05MjJmLWQyNzJiNDBiYzhkZCJ9"
+          target="_blank" class="report-card">
+          <div class="card-icon">✂️</div>
+          <h3>Monitoramento de Cortes - BA</h3>
+          <p>
+            Monitoramento dos cortes realizados na Bahia, com foco em prazos e
+            conformidade das operações.
+          </p>
+          <span>Acessar Relatório</span>
+        </a>
+
+        <a href="#" class="report-card" id="tvReportCard">
           <div class="status-indicator"></div>
           <div class="status-text">Online</div>
           <div class="card-icon">📺</div>
           <h3>Produtividade - SE (TV)</h3>
-          <p>Monitor exibido na TV da logística, atualização a cada 5s.</p>
+          <p>
+            Monitor de desempenho da unidade de Sergipe, 
+            exibido na TV da logística (Atualização a Cada 5s).
+          </p>
           <span>Acessar Relatório</span>
         </a>
       </div>
