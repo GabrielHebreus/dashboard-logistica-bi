@@ -196,6 +196,39 @@
     </div>
   </div>
 
+  <!-- Modal de Autenticação -->
+<div id="authModal" class="auth-modal active">
+  <div class="auth-content">
+    <div class="auth-header">
+      <h2>Acesso Restrito</h2>
+      <p>Digite a senha para acessar o painel</p>
+    </div>
+    
+    <div class="auth-body">
+      <div class="input-group">
+        <input 
+          type="password" 
+          id="passwordInput" 
+          placeholder="Digite a senha de acesso"
+          maxlength="12"
+          autocomplete="off"
+        />
+        <div class="input-border"></div>
+      </div>
+      
+      <div id="errorMessage" class="error-message" style="display: none;">
+        ❌ Senha incorreta. Tente novamente.
+      </div>
+    </div>
+    
+    <div class="auth-footer">
+      <button id="submitPassword" class="auth-btn">
+        <span>Acessar</span>
+      </button>
+    </div>
+  </div>
+</div>
+
   <script src="script.js"></script>
 </body>
 </html>

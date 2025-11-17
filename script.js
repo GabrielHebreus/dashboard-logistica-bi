@@ -298,3 +298,102 @@ function initializeModal() {
         });
     }
 }
+
+// Sistema de autenticação
+function initializeAuth() {
+    const authModal = document.getElementById('authModal');
+    const passwordInput = document.getElementById('passwordInput');
+    const submitBtn = document.getElementById('submitPassword');
+    const errorMessage = document.getElementById('errorMessage');
+    
+    // === DEFINA A SENHA AQUI ===
+    const CORRECT_PASSWORD = "PCEditora25"; // Altere para a senha desejada
+    
+    // Mostrar modal de autenticação
+    authModal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    
+    // Focar no input automaticamente
+    setTimeout(() => {
+        passwordInput.focus();
+    }, 500);
+    
+    // Função para verificar senha
+    function checkPassword() {
+        const enteredPassword = passwordInput.value.trim();
+        
+        if (enteredPassword === CORRECT_PASSWORD) {
+            // Senha correta - remover modal
+            authModal.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            // Inicializar o resto da aplicação
+            initializeTheme();
+            initializeTypingEffect();
+            initializeParticles();
+            initializeModal();
+            initializeSmoothScroll();
+            
+            // Salvar sessão (opcional)
+            sessionStorage.setItem('authenticated', 'true');
+        } else {
+            // Senha incorreta
+            errorMessage.style.display = 'block';
+            passwordInput.value = '';
+            passwordInput.focus();
+            
+            // Efeito de shake
+            authModal.classList.remove('shake');
+            void authModal.offsetWidth; // Trigger reflow
+            authModal.classList.add('shake');
+        }
+    }
+    
+    // Event listeners
+    submitBtn.addEventListener('click', checkPassword);
+    
+    passwordInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            checkPassword();
+        }
+    });
+    
+    // Prevenir F12, Ctrl+U, etc.
+    document.addEventListener('keydown', (e) => {
+        if (authModal.classList.contains('active')) {
+            if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u')) {
+                e.preventDefault();
+            }
+        }
+    });
+    
+    // Prevenir clique direito
+    document.addEventListener('contextmenu', (e) => {
+        if (authModal.classList.contains('active')) {
+            e.preventDefault();
+        }
+    });
+}
+
+// Modificar o DOMContentLoaded para iniciar com autenticação
+document.addEventListener("DOMContentLoaded", function() {
+    // Verificar se já está autenticado
+    if (sessionStorage.getItem('authenticated') === 'true') {
+        initializeTheme();
+        initializeTypingEffect();
+        initializeParticles();
+        initializeModal();
+        initializeSmoothScroll();
+    } else {
+        initializeAuth();
+    }
+});
+
+// Adicionar estilo para shake no CSS
+const style = document.createElement('style');
+style.textContent = `
+    .shake {
+        animation: shake 0.5s ease;
+    }
+`;
+document.head.appendChild(style);
